@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'SCRIPT_ONE', defaultValue: 'DevOps', description: 'hello-world script')
+        string(name: 'VALUE', defaultValue: 'Dream-Job', description: 'Target goal')
+    }
+
+    stages{
+        stage('Checkout repo'){
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('Call Script') {
+            steps {
+                sh 'chmod +x scripts.sh'
+                sh 'scripts.sh ${SCRIPT_ONE} ${VALUE}'
+            }
+        }
+    }
+
+    
+        
+}
